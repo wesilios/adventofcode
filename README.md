@@ -8,7 +8,7 @@ Each puzzle has **two parts**, increasing in difficulty, and can be solved using
 
 ## 🎯 Goals for This Year
 
-[ ] Solve at least 10 days
-[ ] Write clean & readable code
-[ ] Automate daily input download
-[ ] Build an website to show the results
+- [ ] Solve at least 10 days
+- [ ] Write clean & readable code
+- [ ] Automate daily input download
+- [ ] Build an website to show the results
