@@ -12,11 +12,9 @@
         <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     </ItemGroup>
     <ItemGroup>
-        <None Update="DayO1\*.txt">
+        <None Update="Data">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Include="bin\Debug\net8.0\input.txt" />
-        <None Include="bin\Debug\net8.0\text-input.txt" />
     </ItemGroup>
 
 </Project>
