@@ -1,22 +1,92 @@
-﻿using AoC2025.Day01;
+﻿using AoC2025.Solutions.Abstractions;
+using AoC2025.Solutions.Day01;
+using AoC2025.Solutions.Day02;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Spectre.Console;
 
 var builder = Host.CreateDefaultBuilder(args);
 
 builder.ConfigureServices(services =>
 {
-	services.AddTransient<IDayOneSolution, DayOneSolution>();
+    services.AddTransient<ISolution, DayOneSolutionPartOne>();
+    services.AddTransient<ISolution, DayOneSolutionPartTwo>();
+    services.AddTransient<ISolution, DayTwoSolutionPartOne>();
+    services.AddTransient<ISolution, DayTwoSolutionPartTwo>();
 });
 
 var app = builder.Build();
 
-var solutionOne = app.Services.GetRequiredService<IDayOneSolution>();
+var solutionsByDay = app.Services
+    .GetRequiredService<IEnumerable<ISolution>>()
+    .GroupBy(s => s.Day)
+    .OrderBy(s => s.Key)
+    .ToDictionary(s => s.Key, s => s.ToList());
 
-// var password = await solutionOne.SolvePartOneAsync();
-//
-// Console.WriteLine($"Password to open the door: {password}");
+AnsiConsole.MarkupLine("[bold green]🎄 Advent of Code 2025 🎄[/]");
+AnsiConsole.WriteLine();
 
-var password = await solutionOne.SolvePartTwoAsync();
+while (true)
+{
+    var daysSelection = solutionsByDay.Select(x => x.Key).ToList();
 
-Console.WriteLine($"Using password method 0x434C49434B, Password to open the door: {password}");
+    daysSelection.Add(0);
+
+    var selectedDay = AnsiConsole.Prompt(
+        new SelectionPrompt<int>()
+            .Title("Select a [yellow]solution[/]:")
+            .PageSize(10)
+            .UseConverter(s => s == 0 ? "Exit" : $"{s}. Day {s}")
+            .AddChoices(daysSelection)
+    );
+
+    if (selectedDay == 0) break;
+
+    var solutions = solutionsByDay[selectedDay];
+
+    var selectedSolution = AnsiConsole.Prompt(
+            new SelectionPrompt<ISolution>()
+                .Title($"Day {selectedDay:00} – select [yellow]part[/]:")
+                .UseConverter(s => $"Part {s.Part}: {s.Name}")
+                .AddChoices(solutions)
+        );
+
+    // ---------- Input Mode ----------
+    var useTestInput = AnsiConsole.Confirm(
+        "Use [yellow]test input[/]?",
+        defaultValue: false
+    );
+
+    AnsiConsole.Clear();
+
+    AnsiConsole.MarkupLine(
+        $"[bold cyan]Running Day {selectedSolution.Day:00} " +
+        $"Part {selectedSolution.Part}[/]"
+    );
+
+    AnsiConsole.MarkupLine(
+        $"Input: [yellow]{(useTestInput ? "TEST" : "ACTUAL")}[/]\n"
+    );
+
+    AnsiConsole.WriteLine();
+
+    await AnsiConsole.Status()
+        .Spinner(Spinner.Known.Dots)
+        .SpinnerStyle(Style.Parse("green"))
+        .StartAsync("Solving puzzle...", async _ =>
+        {
+            var result = await selectedSolution.InvokeAsync(useTestInput);
+
+            AnsiConsole.WriteLine();
+            AnsiConsole.MarkupLine("[bold green]Result:[/]");
+            AnsiConsole.WriteLine(result.ToString());
+        });
+
+    AnsiConsole.WriteLine();
+    AnsiConsole.MarkupLine("[grey]Press any key to exit...[/]");
+    Console.ReadKey();
+    AnsiConsole.Clear();
+}
+
+
+AnsiConsole.MarkupLine("[bold red]🎄 Exitting Advent of Code 2025! Enjoy the holiday 🎄[/]");
