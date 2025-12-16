@@ -13,7 +13,11 @@ public class DayOneSolutionPartTwo : ISolution
 
     private readonly ILogger<DayOneSolutionPartOne> _logger;
 
+    public int Day => 1;
+    public int Part => 2;
     public string Name { get; set; }
+    public string Test => "Data/Day01/tests.txt";
+    public string Input => "Data/Day01/input.txt";
 
     public DayOneSolutionPartTwo(ILogger<DayOneSolutionPartOne> logger)
     {
@@ -23,14 +27,14 @@ public class DayOneSolutionPartTwo : ISolution
 
     public int Index => 1;
 
-    public async Task<int> InvokeAsync()
+    public async Task<object> InvokeAsync(bool runTest = false)
     {
         var position = StartingPoint;
         var count = 0;
 
         _logger.LogInformation("The dial starts by pointing at {Position}", position);
 
-        await foreach (var line in File.ReadLinesAsync(Path.Combine(Directory.GetCurrentDirectory(), "input.txt")))
+        await foreach (var line in File.ReadLinesAsync(Path.Combine(Directory.GetCurrentDirectory(), runTest ? Test : Input)))
         {
             var moves = line.StartsWith(LeftRotation)
                 ? -int.Parse(line[LeftRotation.Length..])
