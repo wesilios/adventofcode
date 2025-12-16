@@ -2,6 +2,7 @@
 using AoC2025.Solutions.Day01;
 using AoC2025.Solutions.Day02;
 using AoC2025.Solutions.Day03;
+using AoC2025.Solutions.Day04;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Spectre.Console;
@@ -16,6 +17,7 @@ builder.ConfigureServices(services =>
     services.AddTransient<ISolution, GiftShopPartTwo>();
     services.AddTransient<ISolution, LobbyPartOne>();
     services.AddTransient<ISolution, LobbyPartTwo>();
+    services.AddTransient<ISolution, PrintingDepartmentPartOne>();
 });
 
 var app = builder.Build();
