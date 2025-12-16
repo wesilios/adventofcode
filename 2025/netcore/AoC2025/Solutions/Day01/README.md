@@ -26,6 +26,8 @@ so you can't get in. A document taped to the wall helpfully explains:
 "Due to new security protocols, the password is locked in the safe below. Please see the attached document for the new
 combination."
 
+## --- Part One ---
+
 The safe has a dial with only an arrow on it; around the dial are the numbers 0 through 99 in order. As you turn the
 dial, it makes a
 small click noise as it reaches each number.
@@ -87,7 +89,8 @@ Because the dial points at 0 a total of three times during this process, the pas
 
 Analyze the rotations in your attached document. What's the actual password to open the door?
 
---- Part Two ---
+## --- Part Two ---
+
 You're sure that's the right password, but the door won't open. You knock, but nobody answers. You build a snowman while
 you think.
 
@@ -120,4 +123,3 @@ Be careful: if the dial were pointing at 50, a single rotation like R1000 would 
 before returning back to 50!
 
 Using password method 0x434C49434B, what is the password to open the door?
-

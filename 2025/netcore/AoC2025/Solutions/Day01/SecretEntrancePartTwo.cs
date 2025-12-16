@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace AoC2025.Solutions.Day01;
 
-public class DayOneSolutionPartTwo : ISolution
+public class SecretEntrancePartTwo : ISolution
 {
     private const int MaxNumber = 100;
     private const int MinNumber = 0;
@@ -11,7 +11,7 @@ public class DayOneSolutionPartTwo : ISolution
     private const string LeftRotation = "L";
     private const string RightRotation = "R";
 
-    private readonly ILogger<DayOneSolutionPartOne> _logger;
+    private readonly ILogger<SecretEntrancePartOne> _logger;
 
     public int Day => 1;
     public int Part => 2;
@@ -19,7 +19,7 @@ public class DayOneSolutionPartTwo : ISolution
     public string Test => "Data/Day01/tests.txt";
     public string Input => "Data/Day01/input.txt";
 
-    public DayOneSolutionPartTwo(ILogger<DayOneSolutionPartOne> logger)
+    public SecretEntrancePartTwo(ILogger<SecretEntrancePartOne> logger)
     {
         _logger = logger;
         Name = "--- Day 1: Secret Entrance Part Two ---";

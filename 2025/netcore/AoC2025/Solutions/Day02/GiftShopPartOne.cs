@@ -3,28 +3,27 @@ using Microsoft.Extensions.Logging;
 
 namespace AoC2025.Solutions.Day02;
 
-public class DayTwoSolutionPartTwo : ISolution
+public class GiftShopPartOne : ISolution
 {
-    public DayTwoSolutionPartTwo(ILogger<DayTwoSolutionPartTwo> logger)
+    public GiftShopPartOne(ILogger<GiftShopPartOne> logger)
     {
         _logger = logger;
-        Name = "--- Day 2: Gift Shop Part Two ---";
+        Name = "--- Day 2: Gift Shop ---";
     }
 
     public int Day => 2;
-    public int Part => 2;
+    public int Part => 1;
     public string Name { get; set; }
     public string Test => "Data/Day02/tests.txt";
     public string Input => "Data/Day02/input.txt";
 
-    public int Index => 4;
+    public int Index => 3;
 
-    private readonly ILogger<DayTwoSolutionPartTwo> _logger;
+    private readonly ILogger<GiftShopPartOne> _logger;
 
     public async Task<object> InvokeAsync(bool runTest = false)
     {
-        var fileContent =
-            await File.ReadAllTextAsync(Path.Combine(Directory.GetCurrentDirectory(), runTest ? Test : Input));
+        var fileContent = await File.ReadAllTextAsync(Path.Combine(Directory.GetCurrentDirectory(), runTest ? Test : Input));
         var ranges = fileContent.Split(",");
         var result = decimal.Zero;
         foreach (var range in ranges)
@@ -35,17 +34,9 @@ public class DayTwoSolutionPartTwo : ISolution
             {
                 // calculate the total characters in number
                 var stringNumber = i.ToString();
-
-                var haftLength = stringNumber.Length / 2;
-                var startIndex = 0;
-                while (startIndex < haftLength)
+                if (stringNumber[..(stringNumber.Length / 2)] == stringNumber[(stringNumber.Length / 2)..])
                 {
-                    if (stringNumber.Split(stringNumber[..(haftLength - startIndex)]).GroupBy(x => x).Count() == 1)
-                    {
-                        result += i;
-                        break;
-                    }
-                    startIndex++;
+                    result += i;
                 }
             }
         }

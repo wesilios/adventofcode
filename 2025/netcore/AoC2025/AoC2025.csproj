@@ -17,5 +17,8 @@
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Data\Day03\" />
+    </ItemGroup>
 
 </Project>

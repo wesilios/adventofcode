@@ -1,6 +1,7 @@
 ﻿using AoC2025.Solutions.Abstractions;
 using AoC2025.Solutions.Day01;
 using AoC2025.Solutions.Day02;
+using AoC2025.Solutions.Day03;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Spectre.Console;
@@ -9,10 +10,12 @@ var builder = Host.CreateDefaultBuilder(args);
 
 builder.ConfigureServices(services =>
 {
-    services.AddTransient<ISolution, DayOneSolutionPartOne>();
-    services.AddTransient<ISolution, DayOneSolutionPartTwo>();
-    services.AddTransient<ISolution, DayTwoSolutionPartOne>();
-    services.AddTransient<ISolution, DayTwoSolutionPartTwo>();
+    services.AddTransient<ISolution, SecretEntrancePartOne>();
+    services.AddTransient<ISolution, SecretEntrancePartTwo>();
+    services.AddTransient<ISolution, GiftShopPartOne>();
+    services.AddTransient<ISolution, GiftShopPartTwo>();
+    services.AddTransient<ISolution, LobbyPartOne>();
+    services.AddTransient<ISolution, LobbyPartTwo>();
 });
 
 var app = builder.Build();

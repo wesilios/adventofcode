@@ -13,6 +13,8 @@ As it turns out, one of the younger Elves was playing on a gift shop computer an
 invalid product IDs to their gift shop database! Surely, it would be no trouble for you to identify the invalid product
 IDs for them, right?
 
+## --- Part One ---
+
 They've even checked most of the product ID ranges already; they only have a few product ID ranges (your puzzle input)
 that you'll need to check. For example:
 
@@ -48,7 +50,8 @@ Adding up all the invalid IDs in this example produces 1227775554.
 
 What do you get if you add up all of the invalid IDs?
 
---- Part Two ---
+## --- Part Two ---
+
 The clerk quickly discovers that there are still invalid IDs in the ranges in your list. Maybe the young Elf was doing
 other silly patterns as well?
 
