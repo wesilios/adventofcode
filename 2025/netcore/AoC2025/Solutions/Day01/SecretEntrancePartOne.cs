@@ -3,9 +3,9 @@ using Microsoft.Extensions.Logging;
 
 namespace AoC2025.Solutions.Day01;
 
-public class DayOneSolutionPartOne : ISolution
+public class SecretEntrancePartOne : ISolution
 {
-    public DayOneSolutionPartOne(ILogger<DayOneSolutionPartOne> logger)
+    public SecretEntrancePartOne(ILogger<SecretEntrancePartOne> logger)
     {
         _logger = logger;
         Name = "--- Day 1: Secret Entrance ---";
@@ -17,7 +17,7 @@ public class DayOneSolutionPartOne : ISolution
     private const string LeftRotation = "L";
     private const string RightRotation = "R";
 
-    private readonly ILogger<DayOneSolutionPartOne> _logger;
+    private readonly ILogger<SecretEntrancePartOne> _logger;
 
     public int Day => 1;
     public int Part => 1;
