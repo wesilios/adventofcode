@@ -14,6 +14,7 @@ public class PrintingDepartmentPartTwo : ISolution
     public int Day => 4;
     public int Part => 2;
     public string Name { get; set; }
+    public string Description => "Find accessible paper rolls avoiding X marks";
     public string Test => "Data/Day04/tests.txt";
     public string Input => "Data/Day04/input.txt";
 
@@ -94,6 +95,7 @@ public class PrintingDepartmentPartTwo : ISolution
                         newGrids[y][x] = X;
                     }
                 }
+
                 _logger.LogDebug("Current Row {Y}: {Value}", y, string.Join("", currentGrids[y]));
                 _logger.LogDebug("New Row {Y}: {Value}", y, string.Join("", newGrids[y]));
             }

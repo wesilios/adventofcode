@@ -34,9 +34,9 @@ public class SecretEntrancePartOne : ISolution
 
         _logger.LogDebug("The dial starts by pointing at {Position}", position);
 
-        await foreach (var line in File.ReadLinesAsync(Path.Combine(Directory.GetCurrentDirectory(), runTest ? Test : Input)))
+        await foreach (var line in File.ReadLinesAsync(Path.Combine(Directory.GetCurrentDirectory(),
+                           runTest ? Test : Input)))
         {
-
             var moves = line.StartsWith(LeftRotation)
                 ? -int.Parse(line[LeftRotation.Length..])
                 : int.Parse(line[RightRotation.Length..]);

@@ -8,7 +8,7 @@ public class CafeteriaPartOne : ISolution
     public CafeteriaPartOne(ILogger<CafeteriaPartOne> logger)
     {
         _logger = logger;
-        Name = "--- Day 5: Cafeteria Part One---";
+        Name = "--- Day 5: Cafeteria ---";
     }
 
     public int Day => 5;
@@ -26,7 +26,8 @@ public class CafeteriaPartOne : ISolution
         var ranges = new List<(decimal min, decimal max)>();
         var ingredients = new List<decimal>();
         var insertIngredient = false;
-        await foreach (var line in File.ReadLinesAsync(Path.Combine(Directory.GetCurrentDirectory(), runTest ? Test : Input)))
+        await foreach (var line in File.ReadLinesAsync(Path.Combine(Directory.GetCurrentDirectory(),
+                           runTest ? Test : Input)))
         {
             if (string.IsNullOrEmpty(line))
             {

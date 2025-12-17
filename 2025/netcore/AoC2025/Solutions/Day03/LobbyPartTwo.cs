@@ -28,7 +28,8 @@ public class LobbyPartTwo : ISolution
         const int maximumValue = 9;
         var totalOutput = decimal.Zero;
 
-        await foreach (var bank in File.ReadLinesAsync(Path.Combine(Directory.GetCurrentDirectory(), runTest ? Test : Input)))
+        await foreach (var bank in File.ReadLinesAsync(Path.Combine(Directory.GetCurrentDirectory(),
+                           runTest ? Test : Input)))
         {
             var largestNumber = new StringBuilder();
             var minIndex = 0;
@@ -46,12 +47,13 @@ public class LobbyPartTwo : ISolution
 
                     if (value == maximumValue) break;
                 }
+
                 largestNumber.Append(highestNumber);
             }
 
             totalOutput += decimal.Parse(largestNumber.ToString());
         }
+
         return totalOutput;
     }
 }
-

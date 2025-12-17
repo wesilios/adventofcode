@@ -8,7 +8,7 @@ public class PrintingDepartmentPartOne : ISolution
     public PrintingDepartmentPartOne(ILogger<PrintingDepartmentPartOne> logger)
     {
         _logger = logger;
-        Name = "--- Day 4: Printing Department Part One---";
+        Name = "--- Day 4: Printing Department ---";
     }
 
     public int Day => 4;
@@ -28,7 +28,8 @@ public class PrintingDepartmentPartOne : ISolution
         var result = 0;
 
         var grids = new List<string>();
-        await foreach (var line in File.ReadLinesAsync(Path.Combine(Directory.GetCurrentDirectory(), runTest ? Test : Input)))
+        await foreach (var line in File.ReadLinesAsync(Path.Combine(Directory.GetCurrentDirectory(),
+                           runTest ? Test : Input)))
         {
             grids.Add(line);
         }
@@ -70,9 +71,11 @@ public class PrintingDepartmentPartOne : ISolution
                     //(y+1,x-1)
                     if (y + 1 < grids.Count && grids[y + 1][x - 1] == RollOfPaper) count++;
                 }
+
                 if (count < MaximumRollPaper) result++;
             }
         }
+
         return result;
     }
 }

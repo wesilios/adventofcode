@@ -34,7 +34,8 @@ public class SecretEntrancePartTwo : ISolution
 
         _logger.LogInformation("The dial starts by pointing at {Position}", position);
 
-        await foreach (var line in File.ReadLinesAsync(Path.Combine(Directory.GetCurrentDirectory(), runTest ? Test : Input)))
+        await foreach (var line in File.ReadLinesAsync(Path.Combine(Directory.GetCurrentDirectory(),
+                           runTest ? Test : Input)))
         {
             var moves = line.StartsWith(LeftRotation)
                 ? -int.Parse(line[LeftRotation.Length..])
@@ -69,7 +70,8 @@ public class SecretEntrancePartTwo : ISolution
             if (passes > 0)
             {
                 _logger.LogInformation(
-                    "The dial is rotated {Line} to point at {Position}; during this rotation, it points at {MinNumber} {Passes} times.", line, position, MinNumber, passes);
+                    "The dial is rotated {Line} to point at {Position}; during this rotation, it points at {MinNumber} {Passes} times.",
+                    line, position, MinNumber, passes);
             }
             else
             {

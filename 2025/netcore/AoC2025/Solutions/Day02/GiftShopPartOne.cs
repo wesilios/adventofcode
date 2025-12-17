@@ -23,7 +23,8 @@ public class GiftShopPartOne : ISolution
 
     public async Task<object> InvokeAsync(bool runTest = false)
     {
-        var fileContent = await File.ReadAllTextAsync(Path.Combine(Directory.GetCurrentDirectory(), runTest ? Test : Input));
+        var fileContent =
+            await File.ReadAllTextAsync(Path.Combine(Directory.GetCurrentDirectory(), runTest ? Test : Input));
         var ranges = fileContent.Split(",");
         var result = decimal.Zero;
         foreach (var range in ranges)
