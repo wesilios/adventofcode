@@ -32,7 +32,7 @@ public class SecretEntrancePartOne : ISolution
         var position = StartingPoint;
         var count = 0;
 
-        _logger.LogInformation("The dial starts by pointing at {Position}", position);
+        _logger.LogDebug("The dial starts by pointing at {Position}", position);
 
         await foreach (var line in File.ReadLinesAsync(Path.Combine(Directory.GetCurrentDirectory(), runTest ? Test : Input)))
         {
@@ -53,7 +53,7 @@ public class SecretEntrancePartOne : ISolution
 
             if (position == MinNumber) count++;
 
-            _logger.LogInformation("The dial is rotated {Line} to point at {Position}", line, position);
+            _logger.LogDebug("The dial is rotated {Line} to point at {Position}", line, position);
         }
 
         return count;
