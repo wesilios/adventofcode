@@ -24,7 +24,8 @@ public class CafeteriaPartTwo : ISolution
     public async Task<object> InvokeAsync(bool runTest = false)
     {
         var ranges = new List<Range>();
-        await foreach (var line in File.ReadLinesAsync(Path.Combine(Directory.GetCurrentDirectory(), runTest ? Test : Input)))
+        await foreach (var line in File.ReadLinesAsync(Path.Combine(Directory.GetCurrentDirectory(),
+                           runTest ? Test : Input)))
         {
             if (string.IsNullOrEmpty(line)) break;
 
@@ -47,7 +48,8 @@ public class CafeteriaPartTwo : ISolution
 
             if (ranges[minIndex].Max >= ranges[index].Min)
             {
-                ranges[minIndex].Max = ranges[index].Max;
+                ranges[minIndex].Max =
+                    ranges[minIndex].Max <= ranges[index].Max ? ranges[index].Max : ranges[minIndex].Max;
                 index++;
                 continue;
             }
@@ -62,6 +64,7 @@ public class CafeteriaPartTwo : ISolution
             minIndex++;
             index++;
         }
+
         return result;
     }
 
