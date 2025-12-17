@@ -18,6 +18,7 @@ builder.ConfigureServices(services =>
     services.AddTransient<ISolution, LobbyPartOne>();
     services.AddTransient<ISolution, LobbyPartTwo>();
     services.AddTransient<ISolution, PrintingDepartmentPartOne>();
+    services.AddTransient<ISolution, PrintingDepartmentPartTwo>();
 });
 
 var app = builder.Build();

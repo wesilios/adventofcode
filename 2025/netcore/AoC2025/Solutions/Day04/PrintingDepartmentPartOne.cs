@@ -5,7 +5,6 @@ namespace AoC2025.Solutions.Day04;
 
 public class PrintingDepartmentPartOne : ISolution
 {
-
     public PrintingDepartmentPartOne(ILogger<PrintingDepartmentPartOne> logger)
     {
         _logger = logger;
@@ -18,7 +17,7 @@ public class PrintingDepartmentPartOne : ISolution
     public string Test => "Data/Day04/tests.txt";
     public string Input => "Data/Day04/input.txt";
 
-    public int Index => 6;
+    public int Index => 7;
     private const char RollOfPaper = '@';
     private const int MaximumRollPaper = 4;
 
