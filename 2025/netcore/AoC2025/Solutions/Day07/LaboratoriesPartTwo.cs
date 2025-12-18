@@ -3,12 +3,12 @@ using Microsoft.Extensions.Logging;
 
 namespace AoC2025.Solutions.Day07;
 
-public class LaboratoriesPartOne : ISolution
+public class LaboratoriesPartTwo : ISolution
 {
-    public LaboratoriesPartOne(ILogger<LaboratoriesPartOne> logger)
+    public LaboratoriesPartTwo(ILogger<LaboratoriesPartTwo> logger)
     {
         _logger = logger;
-        Name = "--- Day 7: Laboratories Part One---";
+        Name = "--- Day 7: Laboratories Part Two---";
     }
 
     public int Day => 7;
@@ -18,8 +18,11 @@ public class LaboratoriesPartOne : ISolution
     public string Input => "Data/Day07/input.txt";
 
     public int Index => 14;
+    private const string Start = "S";
+    private const string Splitter = "^";
+    private const string TravelPath = "|";
 
-    private readonly ILogger<LaboratoriesPartOne> _logger;
+    private readonly ILogger<LaboratoriesPartTwo> _logger;
 
     public async Task<object> InvokeAsync(bool runTest = false)
     {
