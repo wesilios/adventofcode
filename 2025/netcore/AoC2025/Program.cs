@@ -4,6 +4,8 @@ using AoC2025.Solutions.Day02;
 using AoC2025.Solutions.Day03;
 using AoC2025.Solutions.Day04;
 using AoC2025.Solutions.Day05;
+using AoC2025.Solutions.Day06;
+using AoC2025.UI;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Spectre.Console;
@@ -12,6 +14,7 @@ var builder = Host.CreateDefaultBuilder(args);
 
 builder.ConfigureServices(services =>
 {
+    services.AddTransient<MenuManager>();
     services.AddTransient<ISolution, SecretEntrancePartOne>();
     services.AddTransient<ISolution, SecretEntrancePartTwo>();
     services.AddTransient<ISolution, GiftShopPartOne>();
@@ -22,43 +25,48 @@ builder.ConfigureServices(services =>
     services.AddTransient<ISolution, PrintingDepartmentPartTwo>();
     services.AddTransient<ISolution, CafeteriaPartOne>();
     services.AddTransient<ISolution, CafeteriaPartTwo>();
+    services.AddTransient<ISolution, TrashCompactorPartOne>();
+    services.AddTransient<ISolution, TrashCompactorPartTwo>();
 });
 
 var app = builder.Build();
 
-var solutionsByDay = app.Services
-    .GetRequiredService<IEnumerable<ISolution>>()
-    .GroupBy(s => s.Day)
-    .OrderBy(s => s.Key)
-    .ToDictionary(s => s.Key, s => s.ToList());
-
-AnsiConsole.MarkupLine("[bold green]🎄 Advent of Code 2025 🎄[/]");
-AnsiConsole.WriteLine();
+var menu = app.Services.GetRequiredService<MenuManager>();
 
 while (true)
 {
-    var daysSelection = solutionsByDay.Select(x => x.Key).ToList();
+    // Show header and progress table
+    menu.ShowHeader();
+    menu.ShowProgressTable();
 
-    daysSelection.Add(0);
+    // Show main menu
+    var selection = menu.ShowMainMenu();
 
-    var selectedDay = AnsiConsole.Prompt(
-        new SelectionPrompt<int>()
-            .Title("Select a [yellow]solution[/]:")
-            .PageSize(10)
-            .UseConverter(s => s == 0 ? "Exit" : $"{s}. Day {s}")
-            .AddChoices(daysSelection)
-    );
+    if (selection == "❌ Exit") break;
+    if (selection == "📊 View Progress Table") continue;
 
-    if (selectedDay == 0) break;
+    // Extract day number
+    var selectedDay = int.Parse(selection.Split(' ')[2]);
+    var solutions = menu.GetSolutions(selectedDay);
 
-    var solutions = solutionsByDay[selectedDay];
+    // Show day menu
+    var action = menu.ShowDayMenu(selectedDay, solutions);
 
-    var selectedSolution = AnsiConsole.Prompt(
-            new SelectionPrompt<ISolution>()
-                .Title($"Day {selectedDay:00} – select [yellow]part[/]:")
-                .UseConverter(s => $"Part {s.Part}: {s.Name}")
-                .AddChoices(solutions)
-        );
+    if (action == "⬅️  Back to Menu") continue;
+
+    if (action == "📖 View Puzzle Description")
+    {
+        AnsiConsole.Clear();
+        menu.ShowPuzzleDescription(solutions.First());
+        AnsiConsole.WriteLine();
+        AnsiConsole.MarkupLine("[grey]Press any key to continue...[/]");
+        Console.ReadKey();
+        continue;
+    }
+
+    // Extract part number and find solution
+    var partNumber = int.Parse(action.Split("Part ")[1].Split(':')[0]);
+    var selectedSolution = solutions.First(s => s.Part == partNumber);
 
     // ---------- Input Mode ----------
     var useTestInput = AnsiConsole.Confirm(
@@ -87,15 +95,13 @@ while (true)
             var result = await selectedSolution.InvokeAsync(useTestInput);
 
             AnsiConsole.WriteLine();
-            AnsiConsole.MarkupLine("[bold green]Result:[/]");
-            AnsiConsole.WriteLine(result.ToString());
+            menu.ShowResultPanel(result);
         });
 
     AnsiConsole.WriteLine();
-    AnsiConsole.MarkupLine("[grey]Press any key to exit...[/]");
+    AnsiConsole.MarkupLine("[grey]Press any key to continue...[/]");
     Console.ReadKey();
-    AnsiConsole.Clear();
 }
 
 
-AnsiConsole.MarkupLine("[bold red]🎄 Exitting Advent of Code 2025! Enjoy the holiday 🎄[/]");
+AnsiConsole.MarkupLine("[bold red]🎄 Exiting Advent of Code 2025! Enjoy the holiday 🎄[/]");

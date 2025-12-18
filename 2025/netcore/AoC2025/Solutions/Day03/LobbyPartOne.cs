@@ -24,7 +24,8 @@ public class LobbyPartOne : ISolution
     public async Task<object> InvokeAsync(bool runTest = false)
     {
         var totalOutput = 0;
-        await foreach (var bank in File.ReadLinesAsync(Path.Combine(Directory.GetCurrentDirectory(), runTest ? Test : Input)))
+        await foreach (var bank in File.ReadLinesAsync(Path.Combine(Directory.GetCurrentDirectory(),
+                           runTest ? Test : Input)))
         {
             var bankLength = bank.Length;
             var largestNumber = 0;
@@ -42,6 +43,7 @@ public class LobbyPartOne : ISolution
 
             totalOutput += largestNumber;
         }
+
         return totalOutput;
     }
 }

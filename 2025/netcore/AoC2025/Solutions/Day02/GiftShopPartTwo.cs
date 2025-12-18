@@ -45,6 +45,7 @@ public class GiftShopPartTwo : ISolution
                         result += i;
                         break;
                     }
+
                     startIndex++;
                 }
             }
