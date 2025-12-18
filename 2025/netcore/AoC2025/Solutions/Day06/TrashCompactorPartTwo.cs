@@ -21,40 +21,19 @@ public class TrashCompactorPartTwo : ISolution
     private const string Added = "+";
     private const string Multiplied = "*";
 
-    private readonly ILogger<TrashCompactorPartOne> _logger;
+    private readonly ILogger<TrashCompactorPartTwo> _logger;
 
     public async Task<object> InvokeAsync(bool runTest = false)
     {
-        var grandTotal = decimal.Zero;
-        var worksheet = new List<List<string>>();
+        var worksheet = new List<string>();
         await foreach (var line in File.ReadLinesAsync(Path.Combine(Directory.GetCurrentDirectory(),
                            runTest ? Test : Input)))
         {
-            var rowItems = line.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList();
-            worksheet.Add(rowItems);
+            //var rowItems = line.Split(' ').ToList();
+            worksheet.Add(line);
         }
 
-        for (var x = 0; x < worksheet[^1].Count; x++)
-        {
-            var operation = worksheet[^1][x];
-            var total = operation == Multiplied ? decimal.One : decimal.Zero;
-            for (var y = 0; y < worksheet.Count - 1; y++)
-            {
-                if (operation == Multiplied)
-                {
-                    total *= decimal.Parse(worksheet[y][x]);
-                    if (total == decimal.Zero) break;
-                    continue;
-                }
-
-                if (operation == Added)
-                {
-                    total += decimal.Parse(worksheet[y][x]);
-                }
-            }
-
-            grandTotal += total;
-        }
+        var grandTotal = decimal.Zero;
 
         return grandTotal;
     }
