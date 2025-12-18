@@ -14,7 +14,6 @@ public class TrashCompactorPartTwo : ISolution
     public int Day => 6;
     public int Part => 2;
     public string Name { get; set; }
-    public string Description => "Solve cephalopod math worksheet with concatenation";
     public string Test => "Data/Day06/tests.txt";
     public string Input => "Data/Day06/input.txt";
 

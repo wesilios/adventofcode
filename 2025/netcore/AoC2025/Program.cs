@@ -25,7 +25,7 @@ builder.ConfigureServices(services =>
     services.AddTransient<ISolution, PrintingDepartmentPartTwo>();
     services.AddTransient<ISolution, CafeteriaPartOne>();
     services.AddTransient<ISolution, CafeteriaPartTwo>();
-    //services.AddTransient<ISolution, TrashCompactorPartOne>();
+    services.AddTransient<ISolution, TrashCompactorPartOne>();
 });
 
 var app = builder.Build();
