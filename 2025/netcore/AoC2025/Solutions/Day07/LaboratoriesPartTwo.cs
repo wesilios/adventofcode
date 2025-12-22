@@ -110,12 +110,10 @@ public class LaboratoriesPartTwo : ISolution
 
 internal class TreeNode
 {
-    public bool IsNullNode { get; set; }
     public int RowIndex { get; }
     public int ColumnIndex { get; }
     public bool MoveLeft { get; set; }
     public bool MoveRight { get; set; }
-    public bool IsNew => !MoveLeft && !MoveRight;
     public bool Done => MoveLeft && MoveRight;
 
     public TreeNode(int rowIndex, int columnIndex)
