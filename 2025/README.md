@@ -14,20 +14,20 @@ Solutions for **[Advent of Code 2025](https://adventofcode.com/2025)** implement
 
 ## 📊 Progress
 
-| Day | C# | C++ | Stars | Notes               |
-|-----|:--:|:---:|:-----:|---------------------|
-| 01  | ✅  | 🚧  |  ⭐⭐   | Secret Entrance     |
-| 02  | ✅  |  ⬜  |  ⭐⭐   | Gift Shop           |
-| 03  | ✅  |  ⬜  |  ⭐⭐   | Lobby               |
-| 04  | ✅  |  ⬜  |  ⭐⭐   | Printing Department |
-| 05  | ✅  |  ⬜  |  ⭐⭐   | Cafeteria           |
-| 06  | ✅  |  ⬜  |  ⭐⭐   | Trash Compactor     |
-| 07  | ⬜  |  ⬜  |  ⬜⬜   |                     |
-| 08  | ⬜  |  ⬜  |  ⬜⬜   |                     |
-| 09  | ⬜  |  ⬜  |  ⬜⬜   |                     |
-| 10  | ⬜  |  ⬜  |  ⬜⬜   |                     |
-| 11  | ⬜  |  ⬜  |  ⬜⬜   |                     |
-| 12  | ⬜  |  ⬜  |  ⬜⬜   |                     |
+| Day | C#  | C++ | Stars | Notes               |
+| --- | :-: | :-: | :---: | ------------------- |
+| 01  | ✅  | 🚧  | ⭐⭐  | Secret Entrance     |
+| 02  | ✅  | ⬜  | ⭐⭐  | Gift Shop           |
+| 03  | ✅  | ⬜  | ⭐⭐  | Lobby               |
+| 04  | ✅  | ⬜  | ⭐⭐  | Printing Department |
+| 05  | ✅  | ⬜  | ⭐⭐  | Cafeteria           |
+| 06  | ✅  | ⬜  | ⭐⭐  | Trash Compactor     |
+| 07  | ✅  | ⬜  | ⭐⭐  | Laboratories        |
+| 08  | ⬜  | ⬜  | ⬜⬜  |                     |
+| 09  | ⬜  | ⬜  | ⬜⬜  |                     |
+| 10  | ⬜  | ⬜  | ⬜⬜  |                     |
+| 11  | ⬜  | ⬜  | ⬜⬜  |                     |
+| 12  | ⬜  | ⬜  | ⬜⬜  |                     |
 
 **Total**: 12/24 ⭐ | **C#**: 6/12 days | **C++**: 0/12 days
 
@@ -41,4 +41,3 @@ Solutions for **[Advent of Code 2025](https://adventofcode.com/2025)** implement
 ---
 
 [← Back to Main README](../README.md)
-

@@ -12,15 +12,15 @@ Suddenly, you find yourself in an unfamiliar room! The room has no doors; the on
 Unfortunately, the teleporter seems to be leaking magic smoke.
 
 Since this is a teleporter lab, there are lots of spare parts, manuals, and diagnostic equipment lying around. After
-connecting one of the diagnostic tools, it helpfully displays error code 0H-N0, which apparently means that there's an
+connecting one of the diagnostic tools, it helpfully displays error code `0H-N0`, which apparently means that there's an
 issue with one of the tachyon manifolds.
 
 ## --- Part One ---
 
 You quickly locate a diagram of the tachyon manifold (your puzzle input). A tachyon beam enters the manifold at the
-location marked S; tachyon beams always move downward. Tachyon beams pass freely through empty space (.). However, if a
-tachyon beam encounters a splitter (^), the beam is stopped; instead, a new tachyon beam continues from the immediate
-left and from the immediate right of the splitter.
+location marked `S`; tachyon beams always move downward. Tachyon beams pass freely through empty space (`.`). However,
+if a tachyon beam encounters a splitter (`^`), the beam is stopped; instead, a new tachyon beam continues from the
+immediate left and from the immediate right of the splitter.
 
 For example:
 
@@ -43,7 +43,7 @@ For example:
 ...............
 ```
 
-In this example, the incoming tachyon beam (|) extends downward from S until it reaches the first splitter:
+In this example, the incoming tachyon beam (`|`) extends downward from S until it reaches the first splitter:
 
 ```
 .......S.......

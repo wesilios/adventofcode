@@ -1,5 +1,7 @@
 # --- Day 5: Cafeteria ---
 
+(Day 5: Cafeteria)[https://adventofcode.com/2025/day/5]
+
 As the forklifts break through the wall, the Elves are delighted to discover that there was a cafeteria on the other
 side after all.
 
@@ -38,12 +40,9 @@ also overlap; an ingredient ID is fresh if it is in any range.
 The Elves are trying to determine which of the available ingredient IDs are fresh. In this example, this is done as
 follows:
 
-Ingredient ID 1 is spoiled because it does not fall into any range.
-Ingredient ID 5 is fresh because it falls into range 3-5.
-Ingredient ID 8 is spoiled.
-Ingredient ID 11 is fresh because it falls into range 10-14.
-Ingredient ID 17 is fresh because it falls into range 16-20 as well as range 12-18.
-Ingredient ID 32 is spoiled.
+Ingredient ID 1 is spoiled because it does not fall into any range. Ingredient ID 5 is fresh because it falls into range
+3-5. Ingredient ID 8 is spoiled. Ingredient ID 11 is fresh because it falls into range 10-14. Ingredient ID 17 is fresh
+because it falls into range 16-20 as well as range 12-18. Ingredient ID 32 is spoiled.
 
 So, in this example, 3 of the available ingredient IDs are fresh.
 

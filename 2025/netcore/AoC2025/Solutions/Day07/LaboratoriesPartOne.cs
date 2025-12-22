@@ -35,7 +35,7 @@ public class LaboratoriesPartOne : ISolution
         }
 
         var rowIndex = 0;
-        while (rowIndex < tachyonDiagram[^1].Count - 1)
+        while (rowIndex < tachyonDiagram.Count - 1)
         {
             for (var columnIndex = 0; columnIndex < tachyonDiagram[rowIndex].Count; columnIndex++)
             {
@@ -48,7 +48,7 @@ public class LaboratoriesPartOne : ISolution
                         continue;
                     }
 
-                    if (columnIndex - 1 > 0 && tachyonDiagram[rowIndex + 1][columnIndex - 1] != Splitter)
+                    if (columnIndex - 1 >= 0 && tachyonDiagram[rowIndex + 1][columnIndex - 1] != Splitter)
                     {
                         tachyonDiagram[rowIndex + 1][columnIndex - 1] = TravelPath;
                     }
