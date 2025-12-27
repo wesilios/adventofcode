@@ -143,11 +143,11 @@ services.AddTransient<ISolution, DayXXPartOne>();
 ```
 
 3. **Add Input Files**:
-    - Create `Data/DayXX/input.txt`
-    - Create `Data/DayXX/test.txt`
+   - Create `Data/DayXX/input.txt`
+   - Create `Data/DayXX/test.txt`
 
 4. **Create README** (optional):
-    - Add `Solutions/DayXX/README.md` with problem description
+   - Add `Solutions/DayXX/README.md` with problem description
 
 ## 📊 Completed Solutions
 
@@ -157,6 +157,7 @@ services.AddTransient<ISolution, DayXXPartOne>();
 4. ✅ [Day 04 - Printing Department](Solutions/Day04/README.md)
 5. ✅ [Day 05 - Cafeteria](Solutions/Day05/README.md)
 6. ✅ [Day 06 - Trash Compactor](Solutions/Day06/README.md)
+7. ✅ [Day 07 - Laboratories](Solutions/Day07/README.md)
 
 ## 🔧 Development Tips
 

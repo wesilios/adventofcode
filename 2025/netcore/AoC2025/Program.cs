@@ -5,6 +5,7 @@ using AoC2025.Solutions.Day03;
 using AoC2025.Solutions.Day04;
 using AoC2025.Solutions.Day05;
 using AoC2025.Solutions.Day06;
+using AoC2025.Solutions.Day07;
 using AoC2025.UI;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,6 +28,8 @@ builder.ConfigureServices(services =>
     services.AddTransient<ISolution, CafeteriaPartTwo>();
     services.AddTransient<ISolution, TrashCompactorPartOne>();
     services.AddTransient<ISolution, TrashCompactorPartTwo>();
+    services.AddTransient<ISolution, LaboratoriesPartOne>();
+    services.AddTransient<ISolution, LaboratoriesPartTwo>();
 });
 
 var app = builder.Build();
