@@ -34,91 +34,124 @@ public class LaboratoriesPartTwo : ISolution
         }
 
         var result = 0;
-        var tree = new Stack<TreeNode>();
-        var rowIndex = 0;
-        var columnIndex = 0;
-        while (rowIndex < tachyonDiagram.Count - 1)
+        var yAxis = 0;
+        var tree = new Dictionary<string, TreeNode>();
+        while (yAxis < tachyonDiagram.Count - 1)
         {
-            if (columnIndex == tachyonDiagram[rowIndex].Count) columnIndex = 0;
-            while (columnIndex < tachyonDiagram[rowIndex].Count)
+            for (var xAxis = 0; xAxis < tachyonDiagram[yAxis].Count; xAxis++)
             {
-                if ((rowIndex == 0 && tachyonDiagram[rowIndex][columnIndex] == Start) ||
-                        tachyonDiagram[rowIndex][columnIndex] == TravelPath)
+                TreeNode? previousNode = null;
+                if ((yAxis == 0 && tachyonDiagram[yAxis][xAxis] == Start) ||
+                        tree.TryGetValue($"{xAxis},{yAxis}", out previousNode))
+                //tachyonDiagram[yAxis][xAxis] == TravelPath)
                 {
-                    if (tachyonDiagram[rowIndex + 1][columnIndex] != Splitter)
+                    if (tachyonDiagram[yAxis + 1][xAxis] != Splitter)
                     {
-                        tachyonDiagram[rowIndex + 1][columnIndex] = TravelPath;
-                        break;
-                    }
-
-                    var node = new TreeNode(rowIndex, columnIndex);
-                    var isNew = true;
-                    if (tree.Count > 0)
-                    {
-                        var peek = tree.Peek();
-                        if (peek.RowIndex == rowIndex && peek.ColumnIndex == columnIndex)
+                        //tachyonDiagram[yAxis + 1][xAxis] = TravelPath;
+                        if (!tree.TryGetValue($"{xAxis},{yAxis + 1}", out var node))
                         {
-                            node = peek;
-                            isNew = false;
+                            node = new TreeNode(xAxis, yAxis + 1);
+                            tree.Add(node.Axes, node);
                         }
+
+                        if (previousNode is not null)
+                        {
+                            previousNode.AddNode(node);
+                        }
+
+                        continue;
                     }
 
-                    if (columnIndex - 1 >= 0 &&
-                        !node.MoveLeft &&
-                        tachyonDiagram[rowIndex + 1][columnIndex - 1] != Splitter)
+                    if (xAxis - 1 >= 0 && tachyonDiagram[yAxis + 1][xAxis - 1] != Splitter)
                     {
-                        tachyonDiagram[rowIndex + 1][columnIndex - 1] = TravelPath;
-                        node.MoveLeft = true;
-                        if (isNew) tree.Push(node);
-                        columnIndex--;
-                        break;
+                        //tachyonDiagram[yAxis + 1][xAxis - 1] = TravelPath;
+                        if (!tree.TryGetValue($"{xAxis - 1},{yAxis + 1}", out var node))
+                        {
+                            node = new TreeNode(xAxis - 1, yAxis + 1);
+                            tree.Add(node.Axes, node);
+                        }
+
+                        previousNode.AddNode(node);
                     }
 
-                    if (columnIndex + 1 <= tachyonDiagram[rowIndex + 1].Count &&
-                        !node.MoveRight &&
-                        tachyonDiagram[rowIndex + 1][columnIndex + 1] != Splitter)
+                    if (xAxis + 1 < tachyonDiagram[yAxis + 1].Count &&
+                            tachyonDiagram[yAxis + 1][xAxis + 1] != Splitter)
                     {
-                        tachyonDiagram[rowIndex + 1][columnIndex + 1] = TravelPath;
-                        node.MoveRight = true;
-                        if (isNew) tree.Push(node);
-                        columnIndex++;
-                        break;
+                        // tachyonDiagram[yAxis + 1][xAxis + 1] = TravelPath;
+                        if (!tree.TryGetValue($"{xAxis + 1},{yAxis + 1}", out var node))
+                        {
+                            node = new TreeNode(xAxis + 1, yAxis + 1);
+                            tree.Add(node.Axes, node);
+                        }
+
+                        previousNode.AddNode(node);
                     }
 
+                    result++;
                 }
-
-                columnIndex++;
             }
 
-            rowIndex++;
-            if (rowIndex == tachyonDiagram.Count - 1)
-            {
-                result++;
-                while (tree.Count != 0 && tree.Peek().Done)
-                {
-                    tree.Pop();
-                }
-                if (tree.Count == 0) break;
-                rowIndex = tree.Peek().RowIndex;
-                columnIndex = tree.Peek().ColumnIndex;
-            }
+            yAxis++;
         }
 
-        return result;
+        // return result;
+        return tree.First().Value.GetPaths().Count();
     }
 }
 
 internal class TreeNode
 {
-    public int RowIndex { get; }
-    public int ColumnIndex { get; }
-    public bool MoveLeft { get; set; }
-    public bool MoveRight { get; set; }
-    public bool Done => MoveLeft && MoveRight;
+    public Guid Id { get; set; }
+    public int? YAxis { get; }
+    public int? XAxis { get; }
+    public string Axes => $"{XAxis},{YAxis}";
+    public TreeNode? LeftNode { get; private set; }
+    public TreeNode? RightNode { get; private set; }
 
-    public TreeNode(int rowIndex, int columnIndex)
+    public TreeNode(int xAxis, int yAxis)
     {
-        RowIndex = rowIndex;
-        ColumnIndex = columnIndex;
+        Id = Guid.NewGuid();
+        YAxis = yAxis;
+        XAxis = xAxis;
+    }
+
+    public void AddNode(TreeNode node)
+    {
+        if (XAxis < node.XAxis)
+        {
+            RightNode = node;
+            return;
+        }
+
+        LeftNode = node;
+    }
+
+    public List<string> GetPaths()
+    {
+        var results = new List<string>();
+        if (LeftNode is null && RightNode is null)
+        {
+            results.Add(Axes);
+            // return results;
+        }
+
+        if (LeftNode is not null)
+        {
+            foreach (var path in LeftNode.GetPaths())
+            {
+                results.Add(Axes + $"-{path}");
+            }
+        }
+
+        if (RightNode is not null)
+        {
+            foreach (var path in RightNode.GetPaths())
+            {
+                results.Add(Axes + $"-{path}");
+            }
+        }
+
+        return results;
     }
 }
+
